@@ -1,8 +1,20 @@
 * [Retrieval-Augmented Generation](/tutorials/rag/)
 
-* [Math Reasoning](/tutorials/math/)
+* [Agents](/tutorials/agents/)
+
+* [Reasoning](/tutorials/math/)
 
 * [Entity Extraction](/tutorials/entity_extraction/)
+
+* [Classification](/tutorials/classification/)
+
+* [Multi-Hop Search](/tutorials/multihop_search/)
+
+* [Privacy-Conscious Delegation](/tutorials/papillon/)
+
+* [Finetuning Agents](/tutorials/games/)
+
+* [Saving and Loading](/tutorials/saving/index.md)
 
 * [Deployment](/tutorials/deployment/)
 
