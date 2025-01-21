@@ -50,8 +50,10 @@ nav:
         - Reasoning: tutorials/math/index.ipynb
         - Entity Extraction: tutorials/entity_extraction/index.ipynb
         - Classification: tutorials/classification/index.md
+        - Classification Finetuning: tutorials/classification_finetuning/index.ipynb
         - Multi-Hop Search: tutorials/multihop_search/index.ipynb
         - Privacy-Conscious Delegation: tutorials/papillon/index.md
+        - Image Generation Prompt iteration: tutorials/image_generation_prompting/index.ipynb
         - Finetuning Agents: tutorials/games/index.ipynb
         - Saving and Loading: tutorials/saving/index.md
         - Deployment: tutorials/deployment/index.md
@@ -66,6 +68,7 @@ nav:
         - Cheatsheet: cheatsheet.md
 
     - API Reference:
+        - API Reference: api/index.md
         - Adapters:
             - Adapter: api/adapters/Adapter.md
             - ChatAdapter: api/adapters/ChatAdapter.md

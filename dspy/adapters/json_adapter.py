@@ -5,7 +5,7 @@ import json
 import logging
 import textwrap
 from copy import deepcopy
-from typing import Any, Dict, KeysView, Literal, NamedTuple, get_args, get_origin
+from typing import Any, Dict, KeysView, Literal, NamedTuple
 
 import json_repair
 import litellm
@@ -15,7 +15,7 @@ from pydantic.fields import FieldInfo
 
 from dspy.adapters.base import Adapter
 from dspy.adapters.image_utils import Image
-from dspy.adapters.utils import find_enum_member, format_field_value, serialize_for_json
+from dspy.adapters.utils import find_enum_member, format_field_value, get_annotation_name, serialize_for_json
 from dspy.signatures.signature import SignatureMeta
 from dspy.signatures.utils import get_dspy_field_type
 
@@ -37,7 +37,8 @@ class JSONAdapter(Adapter):
 
         try:
             provider = lm.model.split("/", 1)[0] or "openai"
-            if "response_format" in litellm.get_supported_openai_params(model=lm.model, custom_llm_provider=provider):
+            params = litellm.get_supported_openai_params(model=lm.model, custom_llm_provider=provider)
+            if params and "response_format" in params:
                 try:
                     response_format = _get_structured_outputs_response_format(signature)
                     outputs = lm(**inputs, **lm_kwargs, response_format=response_format)
@@ -240,19 +241,6 @@ def format_turn(signature: SignatureMeta, values: Dict[str, Any], role, incomple
         )
 
     return {"role": role, "content": "\n\n".join(content).strip()}
-
-
-def get_annotation_name(annotation):
-    origin = get_origin(annotation)
-    args = get_args(annotation)
-    if origin is None:
-        if hasattr(annotation, "__name__"):
-            return annotation.__name__
-        else:
-            return str(annotation)
-    else:
-        args_str = ", ".join(get_annotation_name(arg) for arg in args)
-        return f"{get_annotation_name(origin)}[{args_str}]"
 
 
 def enumerate_fields(fields):
